@@ -6,6 +6,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.util.Date;
 
+
+
+
 @Entity
 @Table(name ="estudiantes")
 public class Estudiante{
@@ -14,6 +17,7 @@ public class Estudiante{
     private Long id;
 
     @Column(name = "nombres")
+    @NotBlank("Campo vacío. Ingrese nombre del estudiante")
     private String names;
 
     @Column(name="email")
