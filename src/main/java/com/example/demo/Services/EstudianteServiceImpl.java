@@ -2,6 +2,7 @@ package com.example.demo.Services;
 
 import com.example.demo.DAO.EstudianteDAO;
 import com.example.demo.Entities.Estudiante;
+import com.example.demo.Exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -18,28 +19,52 @@ public class EstudianteServiceImpl implements EstudianteService{
     }
     @Override
     public List<Estudiante> findStudentById(Long id) {
-
-        return (List<Estudiante>) estudianteDAO.findById(id).orElse(null);
-
+        Optional<Estudiante> student = estudianteDAO.findById(id);
+        if(student.isPresent()){
+            return (List<Estudiante>) student.get();
+        }
+        else{
+            throw new NotFoundException("El estudiante no existe");
+        }
     }
 
     @Override
     public List<Estudiante> findStudentByName(String name) {
-        return null;
+        Optional<Estudiante> studentname = Optional.ofNullable(estudianteDAO.findByName(name));
+        if(studentname.isPresent()){
+            return (List<Estudiante>) studentname.get();
+        }
+        else{
+            throw new NotFoundException("El estudiante no existe");
+        }
+
     }
 
     @Override
-    public List<Estudiante> CreateStudent(Estudiante estudiante) {
-        return null;
+    public void CreateStudent(Estudiante estudiante) {
+        estudianteDAO.save(estudiante);
     }
 
     @Override
-    public List<Estudiante> ModifyStudent(Long id, Estudiante estudiante) {
-        return null;
+    public void ModifyStudent(Long id, Estudiante estudiante) {
+        if (estudianteDAO.existsById(id)) {
+            estudiante.setId(id);
+            estudianteDAO.save(estudiante);
+        }
+        else{
+            throw new NotFoundException("El estudiante no existe");
+        }
+
     }
 
     @Override
-    public List<Estudiante> DeleteStudent(Long id) {
-        return null;
+    public void DeleteStudent(Long id) {
+        if (estudianteDAO.existsById(id)) {
+            estudianteDAO.deleteById(id);
+        }
+        else{
+            throw new NotFoundException("El estudiante no existe");
+        }
+
     }
 }

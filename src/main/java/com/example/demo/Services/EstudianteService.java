@@ -8,7 +8,7 @@ public interface EstudianteService {
     public List<Estudiante> findAllListar();
     public List<Estudiante> findStudentById(Long id);
     public List<Estudiante> findStudentByName(String name);
-    public List<Estudiante> CreateStudent(Estudiante estudiante);
-    public List<Estudiante> ModifyStudent(Long id, Estudiante estudiante);
-    public List<Estudiante> DeleteStudent(Long id);
+    public void CreateStudent(Estudiante estudiante);
+    public void ModifyStudent(Long id, Estudiante estudiante);
+    public void DeleteStudent(Long id);
 }
