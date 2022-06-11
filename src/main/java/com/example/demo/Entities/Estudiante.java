@@ -4,6 +4,7 @@ package com.example.demo.Entities;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 
@@ -17,7 +18,7 @@ public class Estudiante{
     private Long id;
 
     @Column(name = "nombres")
-    @NotBlank("Campo vacío. Ingrese nombre del estudiante")
+    @NotBlank(message ="Campo vacío. Ingrese nombre del estudiante")
     private String names;
 
     @Column(name="email")

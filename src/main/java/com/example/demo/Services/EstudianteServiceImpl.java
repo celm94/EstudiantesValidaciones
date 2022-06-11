@@ -4,10 +4,12 @@ import com.example.demo.DAO.EstudianteDAO;
 import com.example.demo.Entities.Estudiante;
 import com.example.demo.Exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class EstudianteServiceImpl implements EstudianteService{
 
     @Autowired
@@ -18,7 +20,7 @@ public class EstudianteServiceImpl implements EstudianteService{
         return (List<Estudiante>) estudianteDAO.findAll();
     }
     @Override
-    public List<Estudiante> findStudentById(Long id) {
+    public Estudiante findStudentById(Long id) {
         Optional<Estudiante> student = estudianteDAO.findById(id);
         if(student.isPresent()){
             return (List<Estudiante>) student.get();
@@ -29,7 +31,7 @@ public class EstudianteServiceImpl implements EstudianteService{
     }
 
     @Override
-    public List<Estudiante> findStudentByName(String name) {
+    public Estudiante findStudentByName(String name) {
         Optional<Estudiante> studentname = Optional.ofNullable(estudianteDAO.findByName(name));
         if(studentname.isPresent()){
             return (List<Estudiante>) studentname.get();
