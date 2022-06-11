@@ -25,7 +25,7 @@ public class EstudiantesApplication {
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
-				.apis(RequestHandlerSelectors.basePackage("com.progra3.estudiantes"))
+				.apis(RequestHandlerSelectors.basePackage("com.example.demo"))
 				.build()
 				.apiInfo(apiDetails());
 

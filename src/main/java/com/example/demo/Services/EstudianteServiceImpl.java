@@ -23,7 +23,7 @@ public class EstudianteServiceImpl implements EstudianteService{
     public Estudiante findStudentById(Long id) {
         Optional<Estudiante> student = estudianteDAO.findById(id);
         if(student.isPresent()){
-            return (List<Estudiante>) student.get();
+            return student.get();
         }
         else{
             throw new NotFoundException("El estudiante no existe");
@@ -34,7 +34,7 @@ public class EstudianteServiceImpl implements EstudianteService{
     public Estudiante findStudentByName(String name) {
         Optional<Estudiante> studentname = Optional.ofNullable(estudianteDAO.findByName(name));
         if(studentname.isPresent()){
-            return (List<Estudiante>) studentname.get();
+            return studentname.get();
         }
         else{
             throw new NotFoundException("El estudiante no existe");
